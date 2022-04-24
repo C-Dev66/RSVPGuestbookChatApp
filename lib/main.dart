@@ -12,14 +12,12 @@ import 'src/authentication.dart';
 import 'src/widgets.dart';
 
 void main() {
-
   runApp(
     ChangeNotifierProvider(
       create: (context) => ApplicationState(),
       builder: (context, _) => App(),
     ),
   );
-
 }
 
 class App extends StatelessWidget {
@@ -80,8 +78,20 @@ class HomePage extends StatelessWidget {
           const Paragraph(
             'Join us for a day full of Firebase Workshops and Pizza!',
           ),
-          const Header ('Discussion'),
-          GuestBook(addMessage: (message) => print(message)),
+          Consumer<ApplicationState>(
+            builder: (context, appState, _) => Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                if (appState.loginState == ApplicationLoginState.loggedIn) ...[
+                  const Header('Discussion'),
+                  GuestBook(
+                      addMessage: (message) => appState.addMessageToGuestBook(
+                            message,
+                          )),
+                ],
+              ],
+            ),
+          ),
         ],
       ),
     );
@@ -89,7 +99,6 @@ class HomePage extends StatelessWidget {
 }
 
 class ApplicationState extends ChangeNotifier {
-
   ApplicationState() {
     init();
   }
@@ -189,15 +198,12 @@ class ApplicationState extends ChangeNotifier {
       'timestamp': DateTime.now().millisecondsSinceEpoch,
       'name': FirebaseAuth.instance.currentUser!.displayName,
       'userId': FirebaseAuth.instance.currentUser!.uid,
-        });
+    });
   }
-
-
 }
 
-
 class GuestBook extends StatefulWidget {
-  const GuestBook ({required this.addMessage});
+  const GuestBook({required this.addMessage});
   final FutureOr<void> Function(String message) addMessage;
 
   @override
@@ -217,19 +223,16 @@ class _GuestBookState extends State<GuestBook> {
         child: Row(
           children: [
             Expanded(
-              child: TextFormField(
-                controller: _controller,
-                decoration: const InputDecoration(
-                  hintText: 'Leave a message'
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Enter your message to continue';
-                  }
-                  return null;
-                },
-              )
-            ),
+                child: TextFormField(
+              controller: _controller,
+              decoration: const InputDecoration(hintText: 'Leave a message'),
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Enter your message to continue';
+                }
+                return null;
+              },
+            )),
             const SizedBox(width: 8),
             StyledButton(
               onPressed: () async {
@@ -250,5 +253,5 @@ class _GuestBookState extends State<GuestBook> {
         ),
       ),
     );
-  }  
+  }
 }
