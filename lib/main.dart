@@ -174,3 +174,12 @@ class ApplicationState extends ChangeNotifier {
     FirebaseAuth.instance.signOut();
   }
 }
+
+
+class GuestBook extends StatefulWidget {
+  const GuestBook ({required this.addMessage});
+  final FutureOr<void> Function(String message) addMessage;
+
+  @override
+  _GuestBookState createState() => GuestBookState();
+}
