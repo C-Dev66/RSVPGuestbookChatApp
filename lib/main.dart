@@ -110,6 +110,15 @@ class ApplicationState extends ChangeNotifier {
       options: DefaultFirebaseOptions.currentPlatform,
     );
 
+    FirebaseFirestore.instance
+        .collection('attendees')
+        .where('attending', isEqualTo: true)
+        .snapshots()
+        .listen((snapshot){
+      _attendees = snapshot.docs.length;
+      notifyListeners();
+        });
+
     FirebaseAuth.instance.userChanges().listen((user) {
       if (user != null) {
         _loginState = ApplicationLoginState.loggedIn;
@@ -129,10 +138,28 @@ class ApplicationState extends ChangeNotifier {
           }
           notifyListeners();
         });
+      _attendingSubscription = FirebaseFirestore.instance
+            .collection('attendees')
+            .doc(user.uid)
+            .snapshots()
+            .listen((snapshot){
+          if (snapshot.data() != null) {
+            if (snapshot.data()!['attending'] as bool) {
+              _attending = Attending.yes;
+            } else {
+              _attending = Attending.no;
+            } 
+          } else {
+            _attending = Attending.unknown;
+          }
+          notifyListeners();
+            });
+
       } else {
         _loginState = ApplicationLoginState.loggedOut;
         _guestBookMessages = [];
         _guestBookSubscription?.cancel();
+        _attendingSubscription?.cancel();
       }
       notifyListeners();
     });
@@ -231,6 +258,7 @@ class GuestBookMessage {
   final String name;
   final String message;
 }
+enum Attending { yes, no, unknown}
 
 class GuestBook extends StatefulWidget {
   const GuestBook({required this.addMessage, required this.messages});
@@ -296,3 +324,21 @@ class _GuestBookState extends State<GuestBook> {
     );
   }
 }
+
+int _attendees = 0;
+int get attendees => _attendees;
+
+Attending _attending = Attending.unknown;
+StreamSubscription<DocumentSnapshot>? _attendingSubscription;
+Attending get attending => _attending;
+set attending(Attending attending) {
+  final userDoc = FirebaseFirestore.instance
+    .collection('attendees')
+    .doc(FirebaseAuth.instance.currentUser!.uid);
+  if (attending == Attending.yes) {
+    userDoc.set(<String, dynamic>{'attending': true});
+  } else {
+    userDoc.set(<String, dynamic>{'attending': false});
+  }
+}
+
