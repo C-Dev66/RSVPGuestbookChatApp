@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:html';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -86,10 +85,10 @@ class HomePage extends StatelessWidget {
                 if (appState.loginState == ApplicationLoginState.loggedIn) ...[
                   const Header('Discussion'),
                   GuestBook(
-                      addMessage: (message) => appState.addMessageToGuestBook(
-                            message,
-                          ),
-                        messages: appState.GuestBookMessages,
+                    addMessage: (message) => appState.addMessageToGuestBook(
+                      message,
+                    ),
+                    messages: appState.GuestBookMessages,
                   ),
                 ],
               ],
