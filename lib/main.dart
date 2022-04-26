@@ -102,7 +102,7 @@ class ApplicationState extends ChangeNotifier {
   ApplicationState() {
     init();
   }
-
+ 
   Future<void> init() async {
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
@@ -201,6 +201,17 @@ class ApplicationState extends ChangeNotifier {
     });
   }
 }
+
+
+class GuestBookMessage {
+  GuestBookMessage({required this.name, required this.message});
+  final String name;
+  final String message;
+}
+
+
+
+
 
 class GuestBook extends StatefulWidget {
   const GuestBook({required this.addMessage});
