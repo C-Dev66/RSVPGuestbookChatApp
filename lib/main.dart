@@ -87,7 +87,7 @@ class HomePage extends StatelessWidget {
                 else if (appState.attendees == 1)
                   const Paragraph('1 person going')
                 else
-                  const Paragraph('No one is going'),
+                  const Paragraph('No one going'),
                 if (appState.loginState == ApplicationLoginState.loggedIn) ...[
                   YesNoSelection(
                     state: appState.attending,
@@ -95,10 +95,9 @@ class HomePage extends StatelessWidget {
                   ),
                   const Header('Discussion'),
                   GuestBook(
-                    addMessage: (message) => appState.addMessageToGuestBook(
-                      message,
-                    ),
-                    messages: appState.GuestBookMessages,
+                    addMessage: (message) =>
+                        appState.addMessageToGuestBook(message),
+                    messages: appState.guestBookMessages,
                   ),
                 ],
               ],
@@ -124,10 +123,10 @@ class ApplicationState extends ChangeNotifier {
         .collection('attendees')
         .where('attending', isEqualTo: true)
         .snapshots()
-        .listen((snapshot){
+        .listen((snapshot) {
       _attendees = snapshot.docs.length;
       notifyListeners();
-        });
+    });
 
     FirebaseAuth.instance.userChanges().listen((user) {
       if (user != null) {
@@ -148,23 +147,22 @@ class ApplicationState extends ChangeNotifier {
           }
           notifyListeners();
         });
-      _attendingSubscription = FirebaseFirestore.instance
+        _attendingSubscription = FirebaseFirestore.instance
             .collection('attendees')
             .doc(user.uid)
             .snapshots()
-            .listen((snapshot){
+            .listen((snapshot) {
           if (snapshot.data() != null) {
             if (snapshot.data()!['attending'] as bool) {
               _attending = Attending.yes;
             } else {
               _attending = Attending.no;
-            } 
+            }
           } else {
             _attending = Attending.unknown;
           }
           notifyListeners();
-            });
-
+        });
       } else {
         _loginState = ApplicationLoginState.loggedOut;
         _guestBookMessages = [];
@@ -183,7 +181,24 @@ class ApplicationState extends ChangeNotifier {
 
   StreamSubscription<QuerySnapshot>? _guestBookSubscription;
   List<GuestBookMessage> _guestBookMessages = [];
-  List<GuestBookMessage> get GuestBookMessages => _guestBookMessages;
+  List<GuestBookMessage> get guestBookMessages => _guestBookMessages;
+
+  int _attendees = 0;
+  int get attendees => _attendees;
+
+  Attending _attending = Attending.unknown;
+  StreamSubscription<DocumentSnapshot>? _attendingSubscription;
+  Attending get attending => _attending;
+  set attending(Attending attending) {
+    final userDoc = FirebaseFirestore.instance
+        .collection('attendees')
+        .doc(FirebaseAuth.instance.currentUser!.uid);
+    if (attending == Attending.yes) {
+      userDoc.set(<String, dynamic>{'attending': true});
+    } else {
+      userDoc.set(<String, dynamic>{'attending': false});
+    }
+  }
 
   void startLoginFlow() {
     _loginState = ApplicationLoginState.emailAddress;
@@ -268,7 +283,8 @@ class GuestBookMessage {
   final String name;
   final String message;
 }
-enum Attending { yes, no, unknown}
+
+enum Attending { yes, no, unknown }
 
 class GuestBook extends StatefulWidget {
   const GuestBook({required this.addMessage, required this.messages});
@@ -280,7 +296,7 @@ class GuestBook extends StatefulWidget {
 }
 
 class _GuestBookState extends State<GuestBook> {
-  final _formkey = GlobalKey<FormState>(debugLabel: '_GuestBookState');
+  final _formKey = GlobalKey<FormState>(debugLabel: '_GuestBookState');
   final _controller = TextEditingController();
 
   @override
@@ -291,25 +307,27 @@ class _GuestBookState extends State<GuestBook> {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Form(
-            key: _formkey,
+            key: _formKey,
             child: Row(
               children: [
                 Expanded(
-                    child: TextFormField(
-                  controller: _controller,
-                  decoration:
-                      const InputDecoration(hintText: 'Leave a message'),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Enter your message to continue';
-                    }
-                    return null;
-                  },
-                )),
+                  child: TextFormField(
+                    controller: _controller,
+                    decoration: const InputDecoration(
+                      hintText: 'Leave a message',
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Enter your message to continue';
+                      }
+                      return null;
+                    },
+                  ),
+                ),
                 const SizedBox(width: 8),
                 StyledButton(
                   onPressed: () async {
-                    if (_formkey.currentState!.validate()) {
+                    if (_formKey.currentState!.validate()) {
                       await widget.addMessage(_controller.text);
                       _controller.clear();
                     }
@@ -321,7 +339,7 @@ class _GuestBookState extends State<GuestBook> {
                       Text('SEND'),
                     ],
                   ),
-                )
+                ),
               ],
             ),
           ),
@@ -335,30 +353,10 @@ class _GuestBookState extends State<GuestBook> {
   }
 }
 
-int _attendees = 0;
-int get attendees => _attendees;
-
-Attending _attending = Attending.unknown;
-StreamSubscription<DocumentSnapshot>? _attendingSubscription;
-Attending get attending => _attending;
-set attending(Attending attending) {
-  final userDoc = FirebaseFirestore.instance
-    .collection('attendees')
-    .doc(FirebaseAuth.instance.currentUser!.uid);
-  if (attending == Attending.yes) {
-    userDoc.set(<String, dynamic>{'attending': true});
-  } else {
-    userDoc.set(<String, dynamic>{'attending': false});
-  }
-}
-
-
-
-
-class YesNoSelection extends StatelessWidget{
+class YesNoSelection extends StatelessWidget {
   const YesNoSelection({required this.state, required this.onSelection});
   final Attending state;
-  final void Function (Attending selection) onSelection;
+  final void Function(Attending selection) onSelection;
 
   @override
   Widget build(BuildContext context) {
@@ -366,7 +364,7 @@ class YesNoSelection extends StatelessWidget{
       case Attending.yes:
         return Padding(
           padding: const EdgeInsets.all(8.0),
-          child:  Row(
+          child: Row(
             children: [
               ElevatedButton(
                 style: ElevatedButton.styleFrom(elevation: 0),
@@ -376,12 +374,12 @@ class YesNoSelection extends StatelessWidget{
               const SizedBox(width: 8),
               TextButton(
                 onPressed: () => onSelection(Attending.no),
-                child: const Text('No'),
+                child: const Text('NO'),
               ),
             ],
           ),
         );
-        case Attending.no:
+      case Attending.no:
         return Padding(
           padding: const EdgeInsets.all(8.0),
           child: Row(
@@ -394,28 +392,28 @@ class YesNoSelection extends StatelessWidget{
               ElevatedButton(
                 style: ElevatedButton.styleFrom(elevation: 0),
                 onPressed: () => onSelection(Attending.no),
-                child: const Text('NO')
+                child: const Text('NO'),
               ),
             ],
           ),
         );
-        default:
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: [
-                StyledButton(
-                  onPressed: () => onSelection(Attending.yes),
-                  child: const Text('YES'),
-                ),
-                const SizedBox(width: 8),
-                StyledButton(
-                  onPressed: () => onSelection(Attending.no),
-                  child: const Text('NO'),
-                ),
-              ],
-            ),
-          );    
+      default:
+        return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            children: [
+              StyledButton(
+                onPressed: () => onSelection(Attending.yes),
+                child: const Text('YES'),
+              ),
+              const SizedBox(width: 8),
+              StyledButton(
+                onPressed: () => onSelection(Attending.no),
+                child: const Text('NO'),
+              ),
+            ],
+          ),
+        );
     }
   }
 }
