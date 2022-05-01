@@ -39,6 +39,6 @@ Will authenticate users with Firebase Authentication (email & password) save cha
 
 Flutter Firebase dependencies will need to be implemented to the project. As well as the provider package to make a centralized application state object available throughout the application's tree of Flutter widgets
 
-
+## Methods Implemented
 
 
