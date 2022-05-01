@@ -32,4 +32,13 @@ Learning how to use this editor as well as the basic syntax for Markdown.
 ![alt text] (image.jpg)
 
 
+# RVSPGuestbookChatAPP
+RSVP guestlog that will allow users to reserve their spot for an event as well as chat with others attendees.
+
+Will authenticate users with Firebase Authentication (email & password) save chat logs/sync data with Cloud Firestore (database)
+
+Flutter Firebase dependencies will need to be implemented to the project. As well as the provider package to make a centralized application state object available throughout the application's tree of Flutter widgets
+
+
+
 
