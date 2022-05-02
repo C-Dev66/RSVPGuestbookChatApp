@@ -32,6 +32,16 @@ Learning how to use this editor as well as the basic syntax for Markdown.
 ![alt text] (image.jpg)
 
 
+
+|Syntax  |Description|
+|--------|--------   |
+|Header  |Title      |
+|Paragraph|Text      |
+
+
+
+
+
 # RVSPGuestbookChatAPP
 RSVP guestlog that will allow users to reserve their spot for an event as well as chat with others attendees.
 
