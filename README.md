@@ -43,7 +43,7 @@ Learning how to use this editor as well as the basic syntax for Markdown.
 
 
 # RVSPGuestbookChatAPP
-RSVP guestlog that will allow users to reserve their spot for an event as well as chat with others attendees.
+## RSVP guestlog that will allow users to reserve their spot for an event as well as chat with others attendees.
 
 Will authenticate users with Firebase Authentication (email & password) save chat logs/sync data with Cloud Firestore (database)
 
