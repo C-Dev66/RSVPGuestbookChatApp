@@ -51,4 +51,4 @@ Flutter Firebase dependencies will need to be implemented to the project. As wel
 
 ## Methods Implemented
 
-
+We will be using 
