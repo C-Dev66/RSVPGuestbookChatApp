@@ -52,3 +52,18 @@ Flutter Firebase dependencies will need to be implemented to the project. As wel
 ## Methods Implemented
 
 We will be using 
+
+## Screenhots of application
+
+Will be implemented here
+
+
+## Lessons Learned
+
+
+
+## Recap
+
+
+
+
