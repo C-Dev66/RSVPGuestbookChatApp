@@ -20,7 +20,8 @@ Will be implemented here
 
 ## Recap
 
-:campfire: 
+:campfire:
+🍺 💻 🐯🦁🐱🐹
 
 
 
