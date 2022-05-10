@@ -24,7 +24,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Firebase Meetup',
+      title: 'Programming Study Group',
       theme: ThemeData(
         buttonTheme: Theme.of(context).buttonTheme.copyWith(
               highlightColor: Color.fromARGB(255, 199, 212, 19),
@@ -47,14 +47,14 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Firebase Meetup'),
+        title: const Text('Programming Study Group'),
       ),
       body: ListView(
         children: <Widget>[
           Image.asset('assets/codelab.png'),
           const SizedBox(height: 8),
-          const IconAndDetail(Icons.calendar_today, 'October 30'),
-          const IconAndDetail(Icons.location_city, 'San Francisco'),
+          const IconAndDetail(Icons.calendar_today, 'May 4'),
+          const IconAndDetail(Icons.location_city, 'Los Angeles'),
           Consumer<ApplicationState>(
             builder: (context, appState, _) => Authentication(
               email: appState.email,
@@ -74,7 +74,7 @@ class HomePage extends StatelessWidget {
             endIndent: 8,
             color: Colors.grey,
           ),
-          const Header("What we'll be doing"),
+          const Header("Agenda for the day:"),
           const Paragraph(
             'Join us for a day full of Firebase Workshops and Pizza!',
           ),
