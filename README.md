@@ -16,7 +16,9 @@ Will be implemented here
 
 ## Lessons Learned
 
-
+Learned how to used Firestore CLI
+Initiate clouffire database
+Email & Password sing-in
 
 ## Recap
 
