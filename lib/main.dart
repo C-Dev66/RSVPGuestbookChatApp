@@ -53,9 +53,9 @@ class HomePage extends StatelessWidget {
         children: <Widget>[
           Image.asset('assets/codelab.png'),
           const SizedBox(height: 8),
-          const IconAndDetail(Icons.calendar_today, 'May 4'),
-          const IconAndDetail(Icons.schedule, '6:00 PM PST'),
-          const IconAndDetail(Icons.location_city, 'Los Angeles, CA'),
+          const IconAndDetail(Icons.calendar_today, 'May 4 | 6:00 PM PST', ),
+          const IconAndDetail(Icons.location_city, 'San Diego Convention Center'),
+          const IconAndDetail(Icons.place, '111 W Harbor Dr, San Diego, CA 92101'),
           Consumer<ApplicationState>(
             builder: (context, appState, _) => Authentication(
               email: appState.email,
