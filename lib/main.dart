@@ -27,7 +27,7 @@ class App extends StatelessWidget {
       title: 'Sofware Development Talks',
       theme: ThemeData(
         buttonTheme: Theme.of(context).buttonTheme.copyWith(
-              highlightColor: Color.fromARGB(255, 199, 212, 19),
+              highlightColor: Color.fromARGB(255, 255, 0, 0),
             ),
         primarySwatch: Colors.red,
         textTheme: GoogleFonts.robotoTextTheme(
@@ -47,13 +47,14 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Software Development Talks'),
+        title: const Text('Lets Talk Programming!'),
       ),
       body: ListView(
         children: <Widget>[
           Image.asset('assets/codelab.png'),
           const SizedBox(height: 8),
           const IconAndDetail(Icons.calendar_today, 'May 4'),
+          const IconAndDetail(Icons.schedule, '6:00 PM PST'),
           const IconAndDetail(Icons.location_city, 'Los Angeles, CA'),
           Consumer<ApplicationState>(
             builder: (context, appState, _) => Authentication(
@@ -75,10 +76,10 @@ class HomePage extends StatelessWidget {
             color: Colors.grey,
           ),
           const Header("Agenda & Speakers:"),
-          const Paragraph('- Why Vim is the best text editor - Alfred '),
-          const Paragraph('- Object Orriented Programming'),
-          const Paragraph('- Algorithms & Data Structures'),
-          const Paragraph('- Scripting with Python'),
+          const Paragraph('- Why Vim is the best text editor | Devaslife '),
+          const Paragraph('- Object Orriented Programming | DorianDev'),
+          const Paragraph('- Algorithms & Data Structures | PirateKing'),
+          const Paragraph('- Scripting with Python | NeuralNine'),
           const Divider(
             height: 8,
             thickness: 1,
