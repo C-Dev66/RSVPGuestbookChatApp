@@ -24,7 +24,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Programming Study Group',
+      title: 'Sofware Development Talks',
       theme: ThemeData(
         buttonTheme: Theme.of(context).buttonTheme.copyWith(
               highlightColor: Color.fromARGB(255, 199, 212, 19),
@@ -47,7 +47,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Programming Study Group'),
+        title: const Text('Software Development Talks'),
       ),
       body: ListView(
         children: <Widget>[
@@ -74,20 +74,29 @@ class HomePage extends StatelessWidget {
             endIndent: 8,
             color: Colors.grey,
           ),
-          const Header("Topics to go over:"),
-          const Paragraph(
-            'Join us for a day full of Firebase Workshops and Pizza!',
+          const Header("Agenda & Speakers:"),
+          const Paragraph('- Why Vim is the best text editor - Alfred '),
+          const Paragraph('- Object Orriented Programming'),
+          const Paragraph('- Algorithms & Data Structures'),
+          const Paragraph('- Scripting with Python'),
+          const Divider(
+            height: 8,
+            thickness: 1,
+            indent: 8,
+            endIndent: 8,
+            color: Colors.grey,
           ),
+          const Header("Attendees:"),
           Consumer<ApplicationState>(
             builder: (context, appState, _) => Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 if (appState.attendees >= 2)
-                  Paragraph('${appState.attendees} people going')
+                  Paragraph('${appState.attendees} programmers attending')
                 else if (appState.attendees == 1)
-                  const Paragraph('1 person going')
+                  const Paragraph('1 programmer attending')
                 else
-                  const Paragraph('No one going'),
+                  const Paragraph('No one attending'),
                 if (appState.loginState == ApplicationLoginState.loggedIn) ...[
                   YesNoSelection(
                     state: appState.attending,
