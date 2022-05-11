@@ -54,7 +54,7 @@ class HomePage extends StatelessWidget {
           Image.asset('assets/codelab.png'),
           const SizedBox(height: 8),
           const IconAndDetail(Icons.calendar_today, 'May 4'),
-          const IconAndDetail(Icons.location_city, 'Los Angeles'),
+          const IconAndDetail(Icons.location_city, 'Los Angeles, CA'),
           Consumer<ApplicationState>(
             builder: (context, appState, _) => Authentication(
               email: appState.email,
@@ -74,7 +74,7 @@ class HomePage extends StatelessWidget {
             endIndent: 8,
             color: Colors.grey,
           ),
-          const Header("Agenda for the day:"),
+          const Header("Topics to go over:"),
           const Paragraph(
             'Join us for a day full of Firebase Workshops and Pizza!',
           ),
