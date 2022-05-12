@@ -1,7 +1,12 @@
 <img src="https://github.com/C-Dev66/RSVPGuestbookChatApp/blob/main/screenshots/SideBySide.png" alt="HomePage" width="1500"/>
 
 
-# RVSPGuestbookChatAPP
+# R.S.V.P. Guestbook Chat App
+
+## Table of Contents:
+
+
+
 ## The cross platform application will allow users to reserve their spot for an event as well as chat with others attendees. (Android, iOS, Web)
 
 Will authenticate users with Firebase Authentication (email & password) save chat logs/sync data with Cloud Firestore (database)
