@@ -34,3 +34,5 @@ This is a test in nvim to see if preview in vs code works
 
 
 <img src="https://github.com/C-Dev66/RSVPGuestbookChatApp/blob/main/screenshots/HomePage.png" alt="HomePage" width="200"/>
+
+![HomePage Gif](https://github.com/C-Dev66/RSVPGuestbookChatApp/blob/main/screenshots/HomePage.gif)
