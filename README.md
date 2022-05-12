@@ -1,5 +1,7 @@
 <img src="https://github.com/C-Dev66/RSVPGuestbookChatApp/blob/main/screenshots/SideBySide.png" alt="HomePage" width="1500"/>
+
 ---
+
 # RSVPGuestBookChatApp
 
 ## Table of Contents:
