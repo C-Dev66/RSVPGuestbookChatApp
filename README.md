@@ -8,7 +8,7 @@
 ### Table of Contents:
 
 - [Description](#description)
-- [Methodologies Used](#methodologies-used)
+- [Code Snippets](#code-snippets)
 - [Summary](#summary)
 - [Demo](#demo)
 
@@ -21,7 +21,9 @@
 
 Application is built with Google's Flutter front-end as well their native back-end service Firestore.
 
-Email & Password authentication is set up for login. Enabling administrive control for password resets as well as manual account creation.
+- **Firebase Authentication** to allow your users to sign in to the app.
+- **Cloud Firestore** to save structured data on the cloud and get istant notification when data changes.
+- **Firebase Security** Rules to secure the database.
 
 Cloud Firestore is a NoSQL database, and data stored in the database is split into collections, documents, fields, and subcollections.
 
@@ -33,9 +35,42 @@ We will store each message of the chat as a document in a top-level collection c
 
 ---
 
-## Methodologies Used
+## Code Snippets
 
+> Setting up the application
+```
+// Configure dependencies
 
+flutter pub add firebase_core
+flutter pub add firebase_auth
+flutter pub add cloud_firestore
+flutter pub add provider
+
+// Installing flutterfire
+
+dart pub global activiate  flutter_cli
+
+// Configuring your app
+
+flutterfire configure
+```
+
+> Add user sign-in RSVP
+```dart
+Consumer<ApplicationState>(
+	builder: (context, appState, _) => Authentication(
+		email: appState.email,
+        loginState: appState.loginState,
+        startLoginFlow: appState.startLoginFlow,
+        verifyEmail: appState.verifyEmail,
+        signInWithEmailAndPassword: appState.signInWithEmailAndPassword,
+        cancelRegistration: appState.cancelRegistration,
+        registerAccount: appState.registerAccount,
+        signOut: appState.signOut,
+    ),
+),
+
+```
 
 
 ---
