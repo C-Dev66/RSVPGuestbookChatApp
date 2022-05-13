@@ -29,7 +29,7 @@ We will store each message of the chat as a document in a top-level collection c
 
 
 
-<img src=""https://github.com/C-Dev66/RSVPGuestbookChatApp/blob/main/screenshots/DataModel.png alt="HomePage" width="200"/>
+<img src="https://github.com/C-Dev66/RSVPGuestbookChatApp/blob/main/screenshots/DataModel.png" alt="HomePage" width="200"/>
 
 ---
 
