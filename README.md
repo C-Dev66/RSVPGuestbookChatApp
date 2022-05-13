@@ -19,17 +19,17 @@
 
 ## Description
 
-Application is built with Google's Flutter front-end and their native back-end service Firestore.
+Application is built with Google's Flutter front-end as well their native back-end service Firestore.
 
 Email & Password authentication is set up for login. Enabling administrive control for password resets as well as manual account creation.
 
-Guestbook and chat logs kept in NOSQL Firestore Database. Cloud Firestore is a NoSQL database, and data stored in the database is split into collections, documents, fields, and subcollections. 
+Cloud Firestore is a NoSQL database, and data stored in the database is split into collections, documents, fields, and subcollections.
 
 We will store each message of the chat as a document in a top-level collection called guestbook.
 
 
 
-<img src="https://github.com/C-Dev66/RSVPGuestbookChatApp/blob/main/screenshots/DataModel.png" alt="HomePage" width="200"/>
+<img src="https://github.com/C-Dev66/RSVPGuestbookChatApp/blob/main/screenshots/DataModel.png" alt="HomePage" width="400"/>
 
 ---
 
