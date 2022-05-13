@@ -140,4 +140,4 @@ For more information refer to the official documentation.
 ---
 
 ## Demo
-![HomePage Gif](https://github.com/C-Dev66/RSVPGuestbookChatApp/blob/main/screenshots/HomePage.gif)
+![HomePage Gif](https://github.com/C-Dev66/RSVPGuestbookChatApp/blob/main/screenshots/DemoGif.gif)
