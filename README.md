@@ -1,7 +1,7 @@
 <img src="https://github.com/C-Dev66/RSVPGuestbookChatApp/blob/main/screenshots/SideBySide.png" alt="HomePage"/>
 
 # RSVPGuestBookChatApp
-> This multi-platform application(Andoird, iOS, Web) serves the purpose of storing users who will be attending the up coming convention. Once authenticated guests have the option to communicate in chatroom with all other participants.
+> This multi-platform application(Andoird, iOS, Web) serves the purpose of storing users who will be attending the up coming convention. Once authenticated guests have the option to communicate in a chatroom with all other participants.
 
 ---
 
