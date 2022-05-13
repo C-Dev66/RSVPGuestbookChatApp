@@ -19,7 +19,7 @@
 
 ## Description
 
-Application is built with Google's Flutter front-end as well their native back-end service Firestore.
+Application is built with Google's Flutter front-end as well their native back-end service Firebase.
 
 - **Firebase Authentication** to allow your users to sign in to the app.
 - **Cloud Firestore** to save structured data on the cloud and get istant notification when data changes.
@@ -129,13 +129,13 @@ service cloud.firestore {
 
 ## Summary
 
-Awesome introduction to Firebase, Cloud Firestore, & Security Rules. Really enjoyed this project and will seek to build more applications with their native database service. All around great experience, the future for Flutter is bright. Glad to have the chance to work with it. 🤩🫶
+Awesome introduction to Firebase, Cloud Firestore, & Security Rules. Really enjoyed this project and will seek to build more applications with their native database service. All around great experience, the future is bright for Flutter. Glad to be able to partaken in this revolutinary software. 🤩🫶
 
 For more information refer to the official documentation.
 
 - [Firebase Documentation](https://firebase.google.com/docs)
 - [Flutterfire](https://firebase.google.com/docs/flutter/setup?platform=ios)
-
+- [Google's awesome Flutter Youtube channel, Lots of great content here](https://www.youtube.com/channel/UCwXdFgeE9KYzlDdR7TG9cMw)
 
 ---
 
