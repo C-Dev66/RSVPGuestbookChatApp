@@ -55,7 +55,7 @@ dart pub global activiate  flutter_cli
 flutterfire configure
 ```
 
-> Add user sign-in RSVP
+> Adding user sign-in RSVP
 ```dart
 Consumer<ApplicationState>(
 	builder: (context, appState, _) => Authentication(
@@ -72,7 +72,7 @@ Consumer<ApplicationState>(
 
 ```
 
-> Write Messages to Cloud Firestore
+> Writing Messages to Cloud Firestore
 ```dart
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -108,20 +108,36 @@ Consumer<ApplicationState>(
 ),
 ```
 
+> Adding security & validation rules cloud.firestore
+```
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /guestbook/{entry} {
+      allow read: if request.auth.uid != null;
+      allow write:
+      if request.auth.uid == request.resource.data.userId
+          && "name" in request.resource.data
+          && "text" in request.resource.data
+          && "timestamp" in request.resource.data;
+    }
+  }
+}
+```
 
 ---
 
 ## Summary
 
+Awesome introduction to Firebase, Cloud Firestore, & Security Rules. Really enjoyed this project and will seek to build more applications with their native database service. All around great experience, the future for Flutter is bright. Glad to have the chance to work with it. 🤩🫶
 
+For more information refer to the official documentation.
+
+- [Firebase Documentation](https://firebase.google.com/docs)
+- [Flutterfire](https://firebase.google.com/docs/flutter/setup?platform=ios)
 
 
 ---
 
 ## Demo
-![alt text](https://github.com/C-Dev66/RSVPGuestbookChatApp/blob/main/screenshots/HomePage.png)
-
-
-<img src="https://github.com/C-Dev66/RSVPGuestbookChatApp/blob/main/screenshots/HomePage.png" alt="HomePage" width="200"/>
-
 ![HomePage Gif](https://github.com/C-Dev66/RSVPGuestbookChatApp/blob/main/screenshots/HomePage.gif)
