@@ -72,6 +72,42 @@ Consumer<ApplicationState>(
 
 ```
 
+> Write Messages to Cloud Firestore
+```dart
+import 'dart:async';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+Future<DocumentReference> addMessageToGuestBook(String message) {
+	if (_loginState != ApplicationLoginState.loggedIn) {
+      throw Exception('Must be logged in');
+    }
+
+    return FirebaseFirestore.instance
+        .collection('guestbook')
+        .add(<String, dynamic>{
+      'text': message,
+      'timestamp': DateTime.now().millisecondsSinceEpoch,
+      'name': FirebaseAuth.instance.currentUser!.displayName,
+      'userId': FirebaseAuth.instance.currentUser!.uid,
+    });
+}
+
+Consumer<ApplicationState>(
+     builder: (context, appState, _) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+            if (appState.loginState == ApplicationLoginState.loggedIn) ...[
+                const Header('Discussion'),
+                GuestBook(
+                    addMessage: (message) =>
+                        appState.addMessageToGuestBook(message),
+                  ),
+            ],
+        ],
+    ),
+),
+```
+
 
 ---
 
