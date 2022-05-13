@@ -1,6 +1,7 @@
 <img src="https://github.com/C-Dev66/RSVPGuestbookChatApp/blob/main/screenshots/SideBySide.png" alt="HomePage" width="2584"/>
 
 # RSVPGuestBookChatApp
+> This application serves the purpose of storing users who will be attending the up coming convention. Once authenticated users have the option to communicate in chatroom with all other participants.
 
 ---
 
