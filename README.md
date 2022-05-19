@@ -133,6 +133,7 @@ Awesome introduction to Firebase, Cloud Firestore, & Security Rules. Really enjo
 
 For more information refer to the official documentation.
 
+- [Flutter Documentation](https://docs.flutter.dev/)
 - [Firebase Documentation](https://firebase.google.com/docs)
 - [Flutterfire](https://firebase.google.com/docs/flutter/setup?platform=ios)
 - [Google's awesome Flutter Youtube channel, Lots of great content here](https://www.youtube.com/channel/UCwXdFgeE9KYzlDdR7TG9cMw)
